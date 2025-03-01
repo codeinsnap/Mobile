@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './userSlice';
+import collegeSlice from './collegeSlice';
 export const store = configureStore({
   reducer: {
     user: userSlice,
+    college: collegeSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
