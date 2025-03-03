@@ -47,7 +47,7 @@ function RootLayout() {
         const response = await getUser();
         dispatch(setUser(response?.data?.data))
         if (response?.data?.data?.profileInfoCompleted === 'false'){
-          router.replace('/auth/complete-profile')
+          router.replace('/auth/EnrollmentPage')
         } else if(response?.data?.data?.profileInfoCompleted) {
           router.replace('/(tabs)')
         }
