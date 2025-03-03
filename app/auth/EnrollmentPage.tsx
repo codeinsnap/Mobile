@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCollegeList } from "@/redux/collegeSlice";
 import { TCollegeName } from "@/types/College";
 import { TRootState } from "@/redux/store";
+import { useTheme } from "@/context/ThemeContext";
 
 interface FormData {
   enrollmentNumber: string;
@@ -25,9 +26,11 @@ const coreFields = [
   { value: "ee", label: "Electrical Engineering" },
   { value: "me", label: "Mechanical Engineering" },
   { value: "ce", label: "Civil Engineering" },
+  { value: "it", label: "Information Technology" },
 ];
 
 const EnrollmentPage: React.FC = () => {
+  const { colors } = useTheme();
   const { fetchCollegeNames } = useCollege();
   const { collegeList } = useSelector((state: TRootState) => state.college);
   const dispatch = useDispatch();
@@ -115,10 +118,10 @@ const EnrollmentPage: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.keyboardAvoid}>
         <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-          <View style={styles.card}>
+          <View style={[styles.container, { backgroundColor: colors.background }]}>
             {/* Updated Header */}
             <View style={styles.header}>
               <View style={styles.headerContent}>

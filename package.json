@@ -10,6 +10,14 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@gluestack-style/react": "^1.0.57",
+    "@gluestack-ui/config": "^1.1.20",
+    "@gluestack-ui/themed": "^1.1.69",
+    "@lucide/lab": "^0.1.2",
+    "@react-native-aria/focus": "^0.2.9",
+    "@react-native-aria/interactions": "^0.2.14",
+    "@react-native-aria/overlays": "^0.3.14",
+    "@react-native-async-storage/async-storage": "^2.1.2",
     "@react-native-community/datetimepicker": "^7.7.0",
     "@react-native-community/slider": "^4.5.6",
     "@react-navigation/bottom-tabs": "^7.2.0",
@@ -44,6 +52,7 @@
     "react-native-reanimated": "~3.6.2",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "^4.9.1",
+    "react-native-svg": "^15.11.1",
     "react-native-ui-datepicker": "^3.0.4",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "^0.19.13",
@@ -53,8 +62,8 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~18.3.12",
-    "typescript": "^5.3.3",
     "eslint": "^8.57.0",
-    "eslint-config-expo": "~8.0.1"
+    "eslint-config-expo": "~8.0.1",
+    "typescript": "^5.3.3"
   }
 }

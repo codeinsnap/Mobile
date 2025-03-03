@@ -1,33 +1,34 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, ScrollView } from "react-native";
+import { useTheme } from "@/context/ThemeContext";
+import { Box, Text, Heading, VStack, Button, ButtonText, Image } from "@gluestack-ui/themed";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.header}>
-          <Text style={styles.greeting}>Welcome to</Text>
-          <Text style={styles.appName}>studyprep.io</Text>
-        </View>
-        
-        <View style={styles.featuredSection}>
-          <Text style={styles.sectionTitle}>Featured Content</Text>
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>Getting Started with Study Prep</Text>
-            <Text style={styles.cardDescription}>
-              Learn how to make the most of your study sessions with our comprehensive guide.
-            </Text>
-          </View>
-        </View>
+  const { colors } = useTheme();
 
-        <View style={styles.recentSection}>
-          <Text style={styles.sectionTitle}>Recent Topics</Text>
-          {['Mathematics', 'Physics', 'Chemistry', 'Biology'].map((topic, index) => (
-            <View key={index} style={styles.topicCard}>
-              <Text style={styles.topicTitle}>{topic}</Text>
-            </View>
-          ))}
-        </View>
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Box p="$4">
+          <VStack space="md">
+            <Heading size="2xl" color={colors.text}>
+              Welcome to GlueApp
+            </Heading>
+            <Text color={colors.text} mb="$4">
+              A complete React Native app with Gluestack UI, Redux Toolkit, and theming
+            </Text>
+
+            <Image source={{ uri: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=1812&auto=format&fit=crop" }} alt="App Banner" size="2xl" $xs-borderRadius="$lg" mb="$4" />
+
+            <Heading size="lg" color={colors.text} mt="$4">
+              Latest Posts
+            </Heading>
+
+            <Button mt="$4" variant="solid" action="primary">
+              <ButtonText>View All Posts</ButtonText>
+            </Button>
+          </VStack>
+        </Box>
       </ScrollView>
     </SafeAreaView>
   );
@@ -36,78 +37,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
   },
-  scrollView: {
-    flex: 1,
-  },
-  header: {
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  greeting: {
-    fontSize: 16,
-    color: '#64748b',
-  },
-  appName: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1e293b',
-    marginTop: 4,
-  },
-  featuredSection: {
-    padding: 20,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#334155',
-    marginBottom: 16,
-  },
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1e293b',
-    marginBottom: 8,
-  },
-  cardDescription: {
-    fontSize: 14,
-    color: '#64748b',
-    lineHeight: 20,
-  },
-  recentSection: {
-    padding: 20,
-  },
-  topicCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  topicTitle: {
-    fontSize: 16,
-    color: '#334155',
-    fontWeight: '500',
+  scrollContent: {
+    flexGrow: 1,
   },
 });

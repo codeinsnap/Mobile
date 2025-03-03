@@ -8,8 +8,10 @@ import { useDispatch } from "react-redux";
 import useAuth from "@/hooks/useAuth";
 import { setUser } from "@/redux/userSlice";
 import storage from "@/components/storage";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function LoginScreen() {
+  const { colors } = useTheme();
   const { login, loading, apiError } = useAuth();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -55,7 +57,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.keyboardAvoid}>
         <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
           <View style={styles.content}>

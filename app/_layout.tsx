@@ -4,13 +4,16 @@ import { setUser } from "@/redux/userSlice";
 import { Stack, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { View, ActivityIndicator, StyleSheet, Text } from "react-native";
+import { View, ActivityIndicator, StyleSheet, Text, useColorScheme } from "react-native";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { GluestackUIProvider } from "@gluestack-ui/themed";
+import { config } from "@gluestack-ui/config";
 
 // Root layout wrapper with Redux Provider
 export default function RootLayoutWrapper() {
+  const colorScheme = useColorScheme();
   useEffect(() => {
     if (typeof window !== "undefined") {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -21,9 +24,12 @@ export default function RootLayoutWrapper() {
 
   return (
     <Provider store={store}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <RootLayout />
-      </GestureHandlerRootView>
+      <ThemeProvider>
+        <GluestackUIProvider config={config}>
+          <RootLayout />
+          <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+        </GluestackUIProvider>
+      </ThemeProvider>
     </Provider>
   );
 }
@@ -53,7 +59,13 @@ function RootLayout() {
     if (token && !user) {
       validateTokenAndFetchUser();
     }
+
+    if (!token) {
+      router.replace('/auth/login')
+    }
   }, [token, getUser]);
+
+  
 
   // Always render the navigator first to avoid navigation errors
   return (
